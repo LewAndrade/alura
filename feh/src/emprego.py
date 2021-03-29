@@ -1,3 +1,3 @@
 """
-Retorne o número de vogais dentro da string
+Retorne o número de vogais dentro de uma string
 """

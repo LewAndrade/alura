@@ -33,7 +33,7 @@ class Series(Media):
         self.seasons = seasons
 
 
-avengers = Movie('avengers - inifinity war', 2018, 160)
+avengers = Movie('avengers - infinity war', 2018, 160)
 
 wandavision = Series('wanda vision', 2021, 1)
 

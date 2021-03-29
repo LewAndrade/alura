@@ -1,16 +1,19 @@
-''' repetição '''
+""" repetição """
+
 
 # while
 # loop infinito
-while True:
-    print("cu grande")
+def loop_inifinito():
+    while True:
+        print("cu grande")
 
-# contagem regressiva com input 
+
+# contagem regressiva com input
 contagem = int(input("contagem regressiva de: "))
 while contagem >= 0:
     print("rodada: ", contagem)
     contagem = contagem - 1
-    
+
 # contagem progressiva com variavel
 contador = 1
 destino = 10
@@ -35,7 +38,7 @@ for contador in range(1, 10 + 1):
     print(contador)
 
 # percorrendo lista[]
-lista_str = ["ellie", "LEW", "cu", "cUnDa", "fred", "CrysCrys"]
+lista_str = ["ellie", "LEW", "cu", "cUnDa", "fred", "Crystal"]
 
 for item in lista_str:
     print(item)

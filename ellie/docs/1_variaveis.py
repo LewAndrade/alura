@@ -1,11 +1,11 @@
-''' variaveis '''
+""" variaveis """
 # define variaveis
-carro = "batata"  
+carro = "batata"
+print(carro)
 # mudou variavel
-carro = "banana"  
-
+carro = "banana"
 # defini uma variavel baseada em outra
-moto = carro  
+moto = carro
 carro = 50  # mudou a variavel original
 print(carro)  # essa
 print(moto)  # é diferente dessa

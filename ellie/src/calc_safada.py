@@ -1,6 +1,6 @@
 # calculadora com certeza que é numero
 
-print("caculadora safada", 35 + 34)
+print("calculadora safada", 35 + 34)
 
 n1 = int(input("digite o primeiro numero ai que vou somar: "))
 n2 = int(input("digite o segundo numero ai que vou somar: "))
@@ -10,7 +10,7 @@ resultado = n1 + n2
 print(f"seu resultado: {resultado}")
 
 if resultado == 69:  # == True vai fazer False ele n faz
-    print("plaminha")
+    print("palminha")
 elif resultado == 101:
     print("normal")
 elif resultado == 102:

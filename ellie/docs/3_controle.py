@@ -1,4 +1,4 @@
-''' controle '''
+""" controle """
 var = 2
 if var == 0:
     print("palminha")

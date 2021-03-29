@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.auction.domain import Bidder, Bid, Auction, Evaluator
+from tdd.src.auction.domain import Bidder, Bid, Auction, Evaluator
 
 
 class TestEvaluator(TestCase):

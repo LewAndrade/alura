@@ -31,7 +31,7 @@
 # "se o valor for positivo, continua, se não fecha"
 # "se positivo gera valor aleatorio de 1 a 6"
 
-### JEITO DO FE ###
+# JEITO DO FE #
 def jeito_do_fe():
     from random import randint
 
@@ -43,24 +43,24 @@ def jeito_do_fe():
         positivo = ["sim", "si", "s", "yes", "yup", "yah", "oh yeh"]
 
         if is_first_time:
-            print("Vocẽ gostaria de rodar o dado?")
+            print("Você gostaria de rodar o dado?")
         else:
-            print("Vocẽ gostaria de rodar o dado novamente?")
+            print("Você gostaria de rodar o dado novamente?")
 
         escolha = input("> ").lower()
 
         return escolha in positivo
 
-    is_first_time = True
+    first_time = True
 
-    while pergunta(is_first_time):
+    while pergunta(first_time):
         randomiza_dado()
-        is_first_time = False
+        first_time = False
     else:
         print("vai te fuder então")
 
 
-## JEITO DA LEW ###
+# JEITO DA LEW #
 def jeito_da_lew():
     from random import randint
 
@@ -70,15 +70,15 @@ def jeito_da_lew():
     def validar_resposta(is_first_time):
         positivo = ["sim", "si", "s", "yes", "yup", "yah", "oh yeh"]
 
-        print("Vocẽ gostaria de rodar o dado?" if is_first_time else "Vocẽ gostaria de rodar o dado novamente?")
+        print("Vocẽ gostaria de rodar o dado?" if is_first_time else "Você gostaria de rodar o dado novamente?")
         escolha = input("> ").lower()
 
         return escolha in positivo
 
-    is_first_time = True
+    first_time = True
 
-    while validar_resposta(is_first_time):
+    while validar_resposta(first_time):
         print(f"O dado deu: {randomiza_dado()}")
-        is_first_time = False
+        first_time = False
     else:
-        print("vai te fuder então")
+        print("entaovaitomanocu")
