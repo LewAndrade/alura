@@ -35,7 +35,7 @@ def pega_destino_lew() -> int:
         return int(resp)
     else:
         print("nao entendi... tem que ser numero puta!!! (ps: inteiro ok?)")
-        pega_destino()
+        pega_destino_lew()
 
 
 def contador_da_ellie():
