@@ -1,7 +1,9 @@
-from random import choice
+from abc import ABCMeta, abstractmethod
+from collections.abc import MutableSequence
+from random import choice, randint
 
-
-class Media:
+# Extensão é você herdar uma classe inteira virando uma relação 'é um', aumentando acoplamento
+class Media(metaclass=ABCMeta):
     def __init__(self, name, year):
         self._name = name.title()
         self.year = year
@@ -30,6 +32,7 @@ class Media:
     def give_dislike(self):
         self._dislikes += 1
 
+    @abstractmethod
     def __str__(self) -> str:
         return f"Name: {self._name}\n" \
                f"Year: {self.year}\n" \
@@ -58,16 +61,20 @@ class Series(Media):
                f"Seasons: {self.seasons}"
 
 
-class Playlist:
-    def __init__(self, name: str, medias: list):
+class Documentary(Media):
+    def __init__(self, name, year, category):
+        super().__init__(name, year)
+        self.category = category.title()
+
+    def __str__(self) -> str:
+        return f'{super().__str__()}\n' \
+               f'category: {self.category}'
+
+# Composição é o uso de DuckTyping pra ter uma relação 'tem um', tirando acoplamento
+class Playlist(MutableSequence):
+    def __init__(self, name: str, medias: [Media]):
         self._name = name.title()
         self._medias = medias
-
-    def __getitem__(self, item):
-        return self._medias[item]
-
-    def __len__(self):
-        return len(self._medias)
 
     @property
     def name(self):
@@ -79,39 +86,67 @@ class Playlist:
 
     @property
     def list(self):
-        return self._medias
+        media_list = []
+        val = ""
+        biggest_name = 0
+        for media in self._medias:
+            if len(media.name) > biggest_name:
+                biggest_name = len(media.name)
+            media_list.append(str(media))
 
-    @property
-    def length(self):
+        biggest_name += 6
+
+        for item in media_list:
+            val += "-" * biggest_name + "\n"
+            val += item + "\n"
+            val += "-" * biggest_name + "\n"
+        return val
+
+    def rate(self):
+        for media in self._medias:
+            for x in range(1000):
+                rate = self.__ratio_seed(randint(1, 10), randint(1, 10), randint(1, 20))
+                if rate == "like":
+                    media.give_like()
+
+                if rate == "dislike":
+                    media.give_dislike()
+
+    @staticmethod
+    def __ratio_seed(like=1, dislike=1, none=1):
+        return choice(["like"] * like + ["dislike"] * dislike + [""] * none)
+
+    def __str__(self) -> str:
+        val = f"Playlist: {self._name} \n" \
+              f"Size: {len(self)}\n" \
+              f"{self.list}"
+        return val
+
+    def insert(self, index: int, value) -> None:
+        self._medias.insert(index, value)
+
+    def __getitem__(self, i: int) -> Media:
+        return self._medias[i]
+
+    def __setitem__(self, i: int, o: Media) -> None:
+        self._medias[i] = o
+
+    def __delitem__(self, i: int) -> None:
+        self._medias.pop(i)
+
+    def __len__(self) -> int:
         return len(self._medias)
 
 
-avengers = Movie('avengers - infinity war', 2018, 160)
+avengers = Movie('GUERRA DEMORADA', 2018, 160)
 wandavision = Series('wanda vision', 2021, 1)
-falquinho = Series('falcão e o soldado invernal', 2021, 1)
+falquinho = Series('GALO E VELHA', 2021, 1)
 filme_do_lol = Movie('league of lol', 2040, 340)
-danca_das_cadeiras = Series('brincadeira dos popo', 2011, 11)
+danca_das_cadeiras = Series('GOTY', 2011, 11)
+doczin = Documentary('dococo', 1099, "sanitário")
 
-media_list = [avengers, wandavision, falquinho, filme_do_lol, danca_das_cadeiras]
+medias = [avengers, wandavision, falquinho, filme_do_lol, danca_das_cadeiras, doczin]
 
-
-def choose():
-    return choice(["like"] * 10 + ["dislike"] * 1 + [""] * 15)
-
-
-for media in media_list:
-    for x in range(1000):
-        if choose() == "like":
-            media.give_like()
-        if choose() == "dislike":
-            media.give_dislike()
-
-playlist = Playlist("playlistzinha", [avengers, wandavision, falquinho, filme_do_lol, danca_das_cadeiras])
-
-print(playlist.name)
-for media in playlist:
-    print("-" * 33)
-    print(media)
-
-print("-" * 33)
-print(f"The Playlist Size is: {len(playlist)}")
+playlist = Playlist("playlistzinha", medias)
+playlist.rate()
+print(playlist)
