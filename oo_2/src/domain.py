@@ -2,6 +2,7 @@ from abc import ABCMeta, abstractmethod
 from collections.abc import MutableSequence
 from random import choice, randint
 
+
 # Extensão é você herdar uma classe inteira virando uma relação 'é um', aumentando acoplamento
 class Media(metaclass=ABCMeta):
     def __init__(self, name, year):
@@ -69,6 +70,7 @@ class Documentary(Media):
     def __str__(self) -> str:
         return f'{super().__str__()}\n' \
                f'category: {self.category}'
+
 
 # Composição é o uso de DuckTyping pra ter uma relação 'tem um', tirando acoplamento
 class Playlist(MutableSequence):
@@ -145,8 +147,8 @@ filme_do_lol = Movie('league of lol', 2040, 340)
 danca_das_cadeiras = Series('GOTY', 2011, 11)
 doczin = Documentary('dococo', 1099, "sanitário")
 
-medias = [avengers, wandavision, falquinho, filme_do_lol, danca_das_cadeiras, doczin]
+list_of_medias = [avengers, wandavision, falquinho, filme_do_lol, danca_das_cadeiras, doczin]
 
-playlist = Playlist("playlistzinha", medias)
+playlist = Playlist("playlistzinha", list_of_medias)
 playlist.rate()
 print(playlist)
